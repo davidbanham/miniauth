@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+var auth = require('./index.js');
+
+auth.hash(process.argv[2], function(err, hash) {
+  if (err) throw err;
+  console.log(hash);
+});

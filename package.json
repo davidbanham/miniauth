@@ -1,0 +1,29 @@
+{
+  "name": "miniauth",
+  "version": "1.0.0",
+  "description": "Miniature, simple auth for internal APIs",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "bin": {
+    "miniauth": "./bin"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidbanham/miniauth.git"
+  },
+  "author": "david@banham.id.au",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davidbanham/miniauth/issues"
+  },
+  "homepage": "https://github.com/davidbanham/miniauth",
+  "devDependencies": {
+    "tap-spec": "^2.2.1",
+    "tape": "^3.5.0"
+  },
+  "dependencies": {
+    "bcrypt": "^0.8.1"
+  }
+}
