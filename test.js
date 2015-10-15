@@ -1,4 +1,4 @@
-var test = require('tape');
+var test = require('blue-tape');
 var tapSpec = require('tap-spec');
 var bcrypt = require('bcrypt');
 
@@ -33,22 +33,17 @@ test('should have a hash method', function(t) {
 });
 
 test('should pass a valid pair', function(t) {
-  auth.verify(user.name, password, function(err) {
-    t.deepEqual(err, null, err);
-    t.end();
-  });
+  return auth.verify(user.name, password);
 });
 
 test('should fail an invalid password', function(t) {
-  auth.verify(user.name, rando(), function(err) {
+  return auth.verify(user.name, rando()).then(t.fail).catch(function(err) {
     t.equal(err.message, 'Invalid password');
-    t.end();
   });
 });
 
 test('should fail an invalid username', function(t) {
-  auth.verify(rando(), password, function(err) {
+  return auth.verify(rando(), password).then(t.fail).catch(function(err) {
     t.equal(err.message, 'Invalid username');
-    t.end();
   });
 });

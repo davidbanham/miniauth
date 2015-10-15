@@ -20,8 +20,8 @@
   },
   "homepage": "https://github.com/davidbanham/miniauth",
   "devDependencies": {
-    "tap-spec": "^2.2.1",
-    "tape": "^3.5.0"
+    "blue-tape": "^0.1.10",
+    "tap-spec": "^2.2.1"
   },
   "dependencies": {
     "bcrypt": "^0.8.1"

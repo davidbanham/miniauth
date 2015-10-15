@@ -9,18 +9,25 @@ for (k in process.env) {
 };
 
 module.exports = {
-  verify: function(username, pass, cb) {
-    var hash = accounts[username];
+  verify: function(username, pass) {
+    return new Promise(function(resolve, reject) {
+      var hash = accounts[username];
 
-    if (!hash) return cb(new Error('Invalid username'));
+      if (!hash) return reject(new Error('Invalid username'));
 
-    bcrypt.compare(pass, hash, function(err, res) {
-      if (err) return cb(err);
-      if (!res) return cb(new Error('Invalid password'));
-      return cb(null, res);
+      bcrypt.compare(pass, hash, function(err, res) {
+        if (err) return reject(err);
+        if (!res) return reject(new Error('Invalid password'));
+        return resolve(res);
+      });
     });
   },
-  hash: function(pass, cb) {
-    bcrypt.hash(pass, 10, cb);
+  hash: function(pass) {
+    return new Promise(function(resolve, reject) {
+      bcrypt.hash(pass, 10, function(err, hash) {
+        if (err) return reject(err);
+        resolve(hash);
+      });
+    });
   }
 };
